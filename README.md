@@ -1,17 +1,17 @@
 # Household Appliance Energy Demand Forecasting
 
-A comparative study of four categories of 24-hour-ahead time-series forecasters —
+A comparative study of four categories of 24-hour-ahead time-series forecasters 
 simple statistical benchmarks, a classical seasonal model (SARIMAX), a feature-based
 machine-learning model (XGBoost), and a pretrained time-series foundation model
-(Chronos, used zero-shot) — on the UCI Appliance Energy Prediction dataset.
+(Chronos, used zero-shot) on the UCI Appliance Energy Prediction dataset.
 
 ## Project overview
 
 The goal of this project is not to fit a single model, but to rigorously compare eight
 forecasters (5 benchmarks + SARIMAX + XGBoost + Chronos) under identical conditions:
 the same 24-hour forecast horizon, the same 14 rolling-origin test folds, and the same
-three error metrics (RMSE, MAE, MAPE). The full analysis — data preparation, exploratory
-analysis, model development, evaluation, and critical discussion — is contained in a
+three error metrics (RMSE, MAE, MAPE). The full analysis data preparation, exploratory
+analysis, model development, evaluation, and critical discussion is contained in a
 single, self-contained Jupyter notebook.
 
 ## Repository structure
@@ -21,18 +21,18 @@ single, self-contained Jupyter notebook.
 ├── README.md
 ├── requirements.txt
 ├── notebook/
-│   └── 01_data_prep_eda.ipynb      # Full analysis: EDA through final model comparison
+│   └── Energy_Demand_Forecasting.ipynb      # Full analysis: EDA through final model comparison
 ├── data/
 │   └── energydata_complete.csv      # Raw 10-minute resolution dataset
 ├── report/
-│   └── energy_forecasting_report.docx  # Written report (8 pages + references)
+│   └── Forecasting Household Appliance Energy Demand.pdf  # Written report
 └── figures/
     └── ...                           # Key result figures, exported from the notebook
 ```
 
 ## Dataset
 
-**Source:** [UCI Machine Learning Repository — Appliances Energy Prediction](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction)
+**Source:** [UCI Machine Learning Repository Appliances Energy Prediction](https://archive.ics.uci.edu/dataset/374/appliances+energy+prediction)
 
 Candanedo, L. M., Feldheim, V., & Deramaix, D. (2017). Data driven prediction models of
 energy use of appliances in a low-energy house. *Energy and Buildings*, 140, 81–97.
@@ -56,12 +56,8 @@ All other sections run fully offline once the dataset is in place.
 ## Running the analysis
 
 ```bash
-jupyter notebook notebook/01_data_prep_eda.ipynb
+jupyter notebook notebook/Energy_Demand_Forecasting.ipynb
 ```
-
-Run all cells top to bottom. The notebook is self-contained — no external `src/` modules
-are required — and will regenerate every figure, table, and numerical result presented
-in the report directly into a `figures/` folder created alongside it.
 
 Approximate runtime: ~2 minutes for Parts 1–6 and 8–9 (EDA, benchmarks, SARIMAX,
 XGBoost, evaluation, analysis questions); Part 7 (Chronos) adds a few more minutes on
@@ -94,14 +90,14 @@ Final comparison across all 8 models, mean ± std over 14 rolling-origin folds:
 | 8 | Drift | 97.98 | 85.80 | 113.31 |
 
 **Headline finding:** Chronos, used purely zero-shot with no training on this dataset,
-achieves the best typical-case accuracy (MAE, MAPE) of all eight models — including two
-that were fit directly to this exact series — while SARIMAX achieves the best worst-case
+achieves the best typical-case accuracy (MAE, MAPE) of all eight models including two
+that were fit directly to this exact series while SARIMAX achieves the best worst-case
 control (RMSE). Full discussion, critical analysis, and the six required analysis
 questions are answered in both the notebook (Parts 8–9) and the written report.
 
 ## Report
 
-See [`report/energy_forecasting_report.docx`](report/energy_forecasting_report.docx)
+See [`report/energy_forecasting_report.docx`](report/Forecasting Household Appliance Energy Demand.pdf)
 for the full written report, including methodology, results, figures, critical
 discussion, answers to the six analysis questions, future improvements, and references.
 
@@ -112,7 +108,3 @@ discussion, answers to the six analysis questions, future improvements, and refe
 - Chen, T., & Guestrin, C. (2016). XGBoost: A Scalable Tree Boosting System. *KDD 2016*, 785–794.
 - Box, G. E. P., Jenkins, G. M., Reinsel, G. C., & Ljung, G. M. (2015). *Time Series Analysis: Forecasting and Control* (5th ed.). Wiley.
 
-## Author
-
-[Your name] — BS Data Science, Government College University Faisalabad
-Supervised by Dr. Muhammad Ali Raza
