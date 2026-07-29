@@ -104,7 +104,7 @@ questions are answered in both the notebook (Parts 8–9) and the written report
 
 ## Report
 
-See [`report/Forecasting Household Appliance Energy Demand.pdf`](report/Forecasting Household Appliance Energy Demand.pdf)
+See [`report/Forecasting Household Appliance Energy Demand.pdf`]
 for the full written report, including methodology, results, figures, critical
 discussion, answers to the six analysis questions, future improvements, and references.
 
