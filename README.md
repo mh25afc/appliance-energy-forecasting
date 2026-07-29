@@ -41,6 +41,12 @@ energy use of appliances in a low-energy house. *Energy and Buildings*, 140, 81�
 January–May 2016. Resampled to hourly resolution for this study (3,290 hourly
 observations, no missing values or timestamp gaps).
 
+## Clone the repository
+
+```bash
+git clone https://github.com/mh25afc/appliance-energy-forecasting.git
+cd https://github.com/mh25afc/appliance-energy-forecasting
+
 ## Setup
 
 ```bash
@@ -97,7 +103,7 @@ questions are answered in both the notebook (Parts 8–9) and the written report
 
 ## Report
 
-See [`report/energy_forecasting_report.docx`](report/Forecasting Household Appliance Energy Demand.pdf)
+See [`report/Forecasting Household Appliance Energy Demand.pdf`](report/Forecasting Household Appliance Energy Demand.pdf)
 for the full written report, including methodology, results, figures, critical
 discussion, answers to the six analysis questions, future improvements, and references.
 
