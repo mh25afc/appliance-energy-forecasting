@@ -46,6 +46,7 @@ observations, no missing values or timestamp gaps).
 ```bash
 git clone https://github.com/mh25afc/appliance-energy-forecasting.git
 cd https://github.com/mh25afc/appliance-energy-forecasting
+```
 
 ## Setup
 
