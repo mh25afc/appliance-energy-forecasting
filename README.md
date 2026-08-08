@@ -18,16 +18,27 @@ single, self-contained Jupyter notebook.
 
 ```
 .
-├── README.md
-├── requirements.txt
+├── data/                       
+│   ├── energydata_complete.csv    # energydata_complete.csv
 ├── notebook/
-│   └── Energy_Demand_Forecasting.ipynb      # Full analysis: EDA through final model comparison
-├── data/
-│   └── energydata_complete.csv      # Raw 10-minute resolution dataset
+│   └── Energy_Demand_Forecasting.ipynb # original exploratory notebook (Parts 1-8), with all outputs
+├── src/                       # reusable pipeline modules, mirroring the notebook's Parts 1-8
+│   ├── config.py              # shared constants: target, horizon, split, model settings
+│   ├── metrics.py             # RMSE / MAE / MAPE, shared by every model
+│   ├── data_prep.py           # Part 1: load, clean, resample, EDA, stationarity tests
+│   ├── problem_definition.py  # Part 2: target/split/rolling-origin fold generator
+│   ├── benchmarks.py          # Part 3: Mean / Naive / Seasonal Naive / Drift
+│   ├── sarimax_model.py       # Part 4: SARIMAX AIC grid search, diagnostics, walk-forward
+│   ├── feature_engineering.py # Part 5: lag/rolling/calendar/weather features, direct multi-horizon dataset
+│   ├── xgboost_model.py       # Part 6: XGBoost walk-forward (retrained per fold) + feature importance
+│   ├── chronos_model.py       # Part 7: Chronos zero-shot foundation model
+│   └── evaluation.py          # Part 8: consolidated cross-model comparison
+├── run_pipeline.py            # orchestrates src/ modules end-to-end, saves all outputs
 ├── report/
-│   └── Forecasting Household Appliance Energy Demand.pdf  # Written report
-└── figures/
-    └── ...                           # Key result figures, exported from the notebook
+│   └── Forecasting Household Appliance Energy Demand.pdf
+├── results/                   # generated CSVs and figures
+├── requirements.txt
+└── README.md
 ```
 
 ## Dataset
@@ -45,7 +56,7 @@ observations, no missing values or timestamp gaps).
 
 ```bash
 git clone https://github.com/mh25afc/appliance-energy-forecasting.git
-cd https://github.com/mh25afc/appliance-energy-forecasting
+cd appliance-energy-forecasting
 ```
 
 ## Setup
