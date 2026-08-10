@@ -1,14 +1,14 @@
 # Household Appliance Energy Demand Forecasting
 
 A comparative study of four categories of 24-hour-ahead time-series forecasters 
-simple statistical benchmarks, a classical seasonal model (SARIMAX), a feature-based
+simple statistical benchmarks, a classical seasonal model (SARIMA), a feature-based
 machine-learning model (XGBoost), and a pretrained time-series foundation model
 (Chronos, used zero-shot) on the UCI Appliance Energy Prediction dataset.
 
 ## Project overview
 
 The goal of this project is not to fit a single model, but to rigorously compare eight
-forecasters (5 benchmarks + SARIMAX + XGBoost + Chronos) under identical conditions:
+forecasters (5 benchmarks + SARIMA + XGBoost + Chronos) under identical conditions:
 the same 24-hour forecast horizon, the same 14 rolling-origin test folds, and the same
 three error metrics (RMSE, MAE, MAPE). The full analysis data preparation, exploratory
 analysis, model development, evaluation, and critical discussion is contained in a
@@ -21,7 +21,7 @@ single, self-contained Jupyter notebook.
 ├── data/                       
 │   ├── energydata_complete.csv    # energydata_complete.csv
 ├── notebook/
-│   └── Energy_Demand_Forecasting.ipynb # original exploratory notebook (Parts 1-8), with all outputs
+│   └── Energy_Demand_Forecasting_Hamza.ipynb # original exploratory notebook (Parts 1-8), with all outputs
 ├── src/                       # reusable pipeline modules, mirroring the notebook's Parts 1-8
 │   ├── config.py              # shared constants: target, horizon, split, model settings
 │   ├── metrics.py             # RMSE / MAE / MAPE, shared by every model
@@ -35,7 +35,7 @@ single, self-contained Jupyter notebook.
 │   └── evaluation.py          # Part 8: consolidated cross-model comparison
 ├── run_pipeline.py            # orchestrates src/ modules end-to-end, saves all outputs
 ├── report/
-│   └── Forecasting Household Appliance Energy Demand.pdf
+│   └── report.pdf
 ├── results/                   # generated CSVs and figures
 ├── requirements.txt
 └── README.md
@@ -88,7 +88,7 @@ CPU for model download and zero-shot inference across all folds.
 | **Target / horizon** | `Appliances` (Wh), 24 hours ahead, hourly resolution |
 | **Evaluation** | 14 non-overlapping 24-hour rolling-origin folds over the final 14 test days |
 | **Benchmarks** | Mean, Naive, Daily Seasonal Naive, Weekly Seasonal Naive, Drift |
-| **SARIMAX** | AIC grid search over 147 non-seasonal orders + seasonal grid at daily period (s=24) |
+| **SARIMA** | AIC grid search over 147 non-seasonal orders + seasonal grid at daily period (s=24) |
 | **XGBoost** | Direct multi-horizon model with lag, rolling-window, calendar, and current-weather features |
 | **Chronos** | Zero-shot forecasting with `chronos-t5-small`, no training on this dataset |
 
@@ -98,7 +98,7 @@ Final comparison across all 8 models, mean ± std over 14 rolling-origin folds:
 
 | Rank | Model | RMSE (Wh) | MAE (Wh) | MAPE (%) |
 |---|---|---|---|---|
-| 1 | SARIMAX(2,1,6)×(1,0,1,24) | 56.70 | 37.59 | 34.85 |
+| 1 | SARIMA(2,1,6)×(1,0,1,24) | 56.70 | 37.59 | 34.85 |
 | 2 | XGBoost (direct multi-horizon) | 61.02 | 44.04 | 43.73 |
 | 3 | Chronos-T5-small (zero-shot) | 61.71 | 36.02 | **23.26** |
 | 4 | Mean | 66.91 | 50.26 | 53.70 |
